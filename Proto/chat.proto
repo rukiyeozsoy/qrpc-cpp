@@ -1,0 +1,20 @@
+// Mesajlama uygulaması
+
+syntax = "proto3";
+package chat;
+
+// Çift yönlü streaming -> Client sürekli request gönderir, server aynı anda reply yapar
+service ChatService {
+  rpc ChatStream(stream MessageRequest) returns (stream MessageReply);
+}
+
+// Protobuf
+message MessageRequest {
+  string username = 1;
+  string message = 2;
+}
+
+message MessageReply {
+  string username = 1;
+  string message = 2;
+}
